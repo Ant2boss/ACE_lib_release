@@ -26,7 +26,7 @@ namespace ACE_lib.Vectors
 
 				this.pX = value;
 
-				this.OnXChanged?.Invoke(this, new OnValueChanged<int> { OldValue = oldVal, NewValue = this.pX });
+				this.OnXChanged?.Invoke(this, new OnValueChangedArgs<int> { OldValue = oldVal, NewValue = this.pX });
 			}
 		}
 		public int Y 
@@ -38,12 +38,12 @@ namespace ACE_lib.Vectors
 
 				this.pY = value;
 
-				this.OnYChanged?.Invoke(this, new OnValueChanged<int> { OldValue = oldVal, NewValue = this.pY });
+				this.OnYChanged?.Invoke(this, new OnValueChangedArgs<int> { OldValue = oldVal, NewValue = this.pY });
 			}
 		}
 
-		public event EventHandler<OnValueChanged<int>> OnXChanged;
-		public event EventHandler<OnValueChanged<int>> OnYChanged;
+		public event EventHandler<OnValueChangedArgs<int>> OnXChanged;
+		public event EventHandler<OnValueChangedArgs<int>> OnYChanged;
 
 		public void Init(int x, int y)
 		{

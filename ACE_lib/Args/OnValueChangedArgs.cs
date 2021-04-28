@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ACE_lib.Args
 {
-	public class OnValueChanged<T> : EventArgs
+	public class OnValueChangedArgs<T> : EventArgs
 	{
 		public T OldValue { get; set; }
 		public T NewValue { get; set; }

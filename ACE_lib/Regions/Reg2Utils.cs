@@ -23,5 +23,9 @@ namespace ACE_lib.Regions
 
 			return !(R1.GetRight() <= R2.GetLeft() || R1.GetLeft() >= R2.GetRight() || R1.GetBottom() <= R2.GetTop() || R1.GetTop() >= R2.GetBottom());
 		}
+
+		public static void MoveReg(Reg2 Reg, double x, double y) => Reg.SetPosition(Reg.GetLeft() + x, Reg.GetTop() + y);
+		public static void MoveReg(Reg2 Reg, Vec2i Offset) => Reg2Utils.MoveReg(Reg, Offset.X, Offset.Y);
+		public static void MoveReg(Reg2 Reg, Vec2d Offset) => Reg2Utils.MoveReg(Reg, Offset.X, Offset.Y);
 	}
 }

@@ -29,8 +29,8 @@ namespace ACE_lib.Regions
 		public Reg2(Vec2i Size, Vec2i Position) : this(Size.X, Size.Y, Position.X, Position.Y) { }
 		public Reg2(Vec2i Size, Vec2d Position) : this(Size.X, Size.Y, Position.X, Position.Y) { }
 
-		public event EventHandler<OnValueChanged<Vec2i>> OnSizeChanged;
-		public event EventHandler<OnValueChanged<Vec2d>> OnPositionChanged;
+		public event EventHandler<OnValueChangedArgs<Vec2i>> OnSizeChanged;
+		public event EventHandler<OnValueChangedArgs<Vec2d>> OnPositionChanged;
 
 		public void SetSize(int xSize, int ySize)
 		{
@@ -38,7 +38,7 @@ namespace ACE_lib.Regions
 
 			this.pSize.Init(xSize, ySize);
 
-			this.OnSizeChanged?.Invoke(this, new OnValueChanged<Vec2i> { OldValue = oldVal, NewValue = this.pSize.Clone() as Vec2i });
+			this.OnSizeChanged?.Invoke(this, new OnValueChangedArgs<Vec2i> { OldValue = oldVal, NewValue = this.pSize.Clone() as Vec2i });
 		}
 		public void SetSize(Vec2i Size) => this.SetSize(Size.X, Size.Y);
 
@@ -48,7 +48,7 @@ namespace ACE_lib.Regions
 
 			this.pPos.Init(xPos, yPos);
 
-			this.OnPositionChanged?.Invoke(this, new OnValueChanged<Vec2d> { OldValue = oldVal, NewValue = this.pPos.Clone() as Vec2d });
+			this.OnPositionChanged?.Invoke(this, new OnValueChangedArgs<Vec2d> { OldValue = oldVal, NewValue = this.pPos.Clone() as Vec2d });
 		}
 		public void SetPosition(Vec2i Position) => this.SetPosition(Position.X, Position.Y);
 		public void SetPosition(Vec2d Position) => this.SetPosition(Position.X, Position.Y);
