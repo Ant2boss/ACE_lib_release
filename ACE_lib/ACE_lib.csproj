@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Args\OnValueChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Regions\Reg2.cs" />
+    <Compile Include="Regions\Reg2Utils.cs" />
     <Compile Include="Vectors\Vec2d.cs" />
     <Compile Include="Vectors\Vec2i.cs" />
     <Compile Include="Vectors\Vec2Utils.cs" />

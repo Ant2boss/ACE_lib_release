@@ -8,7 +8,7 @@ using ACE_lib.Args;
 
 namespace ACE_lib.Vectors
 {
-	public class Vec2i : ICloneable
+	public sealed class Vec2i : ICloneable
 	{
 		public Vec2i() { }
 		public Vec2i(int x, int y)
