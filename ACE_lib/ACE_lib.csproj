@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="Args\OnValueChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vectors\Vec2d.cs" />
     <Compile Include="Vectors\Vec2i.cs" />
+    <Compile Include="Vectors\Vec2Utils.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

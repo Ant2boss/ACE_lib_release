@@ -8,7 +8,7 @@ using ACE_lib.Args;
 
 namespace ACE_lib.Vectors
 {
-	public class Vec2i
+	public class Vec2i : ICloneable
 	{
 		public Vec2i() { }
 		public Vec2i(int x, int y)
@@ -58,6 +58,9 @@ namespace ACE_lib.Vectors
 
 		public static bool operator ==(Vec2i V1, Vec2i V2) => V1.Equals(V2);
 		public static bool operator !=(Vec2i V1, Vec2i V2) => !V1.Equals(V2);
+
+		public object Clone() => new Vec2i(this.X, this.Y);
+		public Vec2d CloneAsVec2d() => new Vec2d(this.X, this.Y);
 
 		public override string ToString() => $"Vec2i({this.X}, {this.Y})";
 		public override bool Equals(object obj) => (obj is Vec2i tvec) ? (tvec.X == this.X && tvec.Y == this.Y) : (false);
