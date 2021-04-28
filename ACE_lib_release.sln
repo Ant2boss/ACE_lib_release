@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACE-Testing", "ACE-Testing\ACE-Testing.csproj", "{657EDE6D-EED7-4FB3-B5C8-3443C2956648}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACE_lib", "ACE_lib\ACE_lib.csproj", "{CC155EC3-534C-4557-AABD-152501335CDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{657EDE6D-EED7-4FB3-B5C8-3443C2956648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{657EDE6D-EED7-4FB3-B5C8-3443C2956648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{657EDE6D-EED7-4FB3-B5C8-3443C2956648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{657EDE6D-EED7-4FB3-B5C8-3443C2956648}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC155EC3-534C-4557-AABD-152501335CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC155EC3-534C-4557-AABD-152501335CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC155EC3-534C-4557-AABD-152501335CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC155EC3-534C-4557-AABD-152501335CDD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {471585E7-CC6D-4233-BE1E-5BBE3666964E}
+	EndGlobalSection
+EndGlobal
