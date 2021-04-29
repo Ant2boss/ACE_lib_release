@@ -13,7 +13,7 @@ namespace ACE_lib.Content.Canvases
 {
 	//Implement IConnectable when IContent gets created
 
-	public class Can2 : IModifiable2<char>, IReg2_readonly
+	public class Can2 : absConnectableBase, IModifiable2<char>, IReg2_readonly
 	{
 		public static Can2 CreateCanvasSingleton(string Title, int xSize, int ySize)
 		{
@@ -74,6 +74,8 @@ namespace ACE_lib.Content.Canvases
 
 		public void Draw()
 		{
+			this.AppendConnectionsToSelf();
+
 			Console.SetCursorPosition(0, 0);
 			Console.Write(this.pBuffer);
 		}
@@ -134,6 +136,10 @@ namespace ACE_lib.Content.Canvases
 			}
 		}
 		private int pIndexOf(int x, int y) => y * this.pBufferSize.X + x;
+		internal override void abs_HandleConnectionAppending(IContent2 Con, int Index)
+		{
+			Con.AppendTo(this);
+		}
 
 		private char[] pBuffer;
 
