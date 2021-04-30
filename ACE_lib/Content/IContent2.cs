@@ -29,6 +29,9 @@ namespace ACE_lib.Content
 
 		void ClearColors(ConsoleColor ClearWith);
 
+		void ResizeTo(int xSize, int ySize);
+		void ResizeTo(Vec2i Size);
+
 		void AppendTo(IContent2 Content);
 		void AppendTo(IModifiable2<char> Content);
 

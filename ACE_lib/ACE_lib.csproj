@@ -43,11 +43,14 @@
   <ItemGroup>
     <Compile Include="Args\OnModifiedArgs.cs" />
     <Compile Include="Args\OnValueChangedArgs.cs" />
+    <Compile Include="Content\absControllerBase.cs" />
     <Compile Include="Content\Canvases\Can2.cs" />
+    <Compile Include="Content\Controllers\Con2.cs" />
     <Compile Include="Content\Entities\Ent2.cs" />
     <Compile Include="Content\IConnectable2.cs" />
     <Compile Include="Content\absConnectableBase.cs" />
     <Compile Include="Content\IContent2.cs" />
+    <Compile Include="Content\IController2.cs" />
     <Compile Include="Content\IModifiable2.cs" />
     <Compile Include="Content\IPosition2.cs" />
     <Compile Include="Content\IPosition2_readonly.cs" />
@@ -55,6 +58,7 @@
     <Compile Include="Content\IReg2_readonly.cs" />
     <Compile Include="Content\ISize2.cs" />
     <Compile Include="Content\ISize2_readonly.cs" />
+    <Compile Include="Content\Props\BorderProps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regions\Reg2.cs" />
     <Compile Include="Regions\Reg2Utils.cs" />

@@ -44,8 +44,8 @@ namespace ACE_lib.Content
 		public bool IsConnected(IContent2 Con)
 		{
 			if (Con == this) return true;
-			if (this.pConList.Select((el) => el == Con).Count() > 0) return true;
-			if (this.pConList.Select((el) => (el is IConnectable2 tCon) ? (tCon.IsConnected(Con)) : (false)).Count() > 0) return true;
+			if (this.pConList.Where((el) => el == Con).Count() > 0) return true;
+			if (this.pConList.Where((el) => (el is IConnectable2 tCon) ? (tCon.IsConnected(Con)) : (false)).Count() > 0) return true;
 
 			return false;
 		}

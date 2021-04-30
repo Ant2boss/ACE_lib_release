@@ -29,8 +29,8 @@ namespace ACE_lib.Content.Entities
 		}
 		
 		public Ent2(IConnectable2 Parent) : this() { Parent.AddConnection(this); }
-		public Ent2(IConnectable2 Parent, int xSize, int ySize) : this() { Parent.AddConnection(this); }
-		public Ent2(IConnectable2 Parent, int xSize, int ySize, double xPos, double yPos) : this() { Parent.AddConnection(this); }
+		public Ent2(IConnectable2 Parent, int xSize, int ySize) : this(xSize, ySize) { Parent.AddConnection(this); }
+		public Ent2(IConnectable2 Parent, int xSize, int ySize, double xPos, double yPos) : this(xSize, ySize, xPos, yPos) { Parent.AddConnection(this); }
 
 		public Ent2(Vec2i Size) : this(Size.X, Size.Y) { }
 		public Ent2(Vec2i Size, Vec2i Position) : this(Size.X, Size.Y, Position.X, Position.Y) { }
@@ -107,6 +107,34 @@ namespace ACE_lib.Content.Entities
 			this.OnSizeChanged?.Invoke(this, new OnValueChangedArgs<Vec2i> { OldValue = OldSize, NewValue = this.GetSize() });
 		}
 		public void SetSize(Vec2i Size) => this.SetSize(Size.X, Size.Y);
+
+		public void ResizeTo(int xSize, int ySize)
+		{
+			char[] tempContent = new char[xSize * ySize];
+			ConsoleColor[] tempColor = new ConsoleColor[xSize * ySize];
+
+			int xBound = Math.Min(xSize, this.pSize.X);
+			int yBound = Math.Min(ySize, this.pSize.Y);
+
+			for (int y = 0; y < yBound; ++y)
+			{
+				for (int x = 0; x < xBound; ++x)
+				{
+					tempContent[y * xSize + x] = this.GetAt(x, y);
+					tempColor[y * xSize + x] = this.GetColorAt(x, y);
+				}
+			}
+
+			Vec2i OldSize = this.GetSize();
+
+			this.pSize.Init(xSize, ySize);
+			this.pBuffer = tempContent;
+			this.pColorBuffer = tempColor;
+
+			this.OnSizeChanged?.Invoke(this, new OnValueChangedArgs<Vec2i> { OldValue = OldSize, NewValue = this.GetSize() });
+
+		}
+		public void ResizeTo(Vec2i Size) => this.ResizeTo(Size.X, Size.Y);
 
 		public void SetPosition(double xPos, double yPos)
 		{
