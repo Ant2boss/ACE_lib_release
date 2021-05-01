@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,20 @@ namespace ACE_lib.Vectors
 
 		public static Vec2d GetClampedVec2(Vec2d Vec, double Lenght) => (Vec2Utils.GetLenght(Vec) > Lenght) ? (Vec2Utils.GetUnitVec2(Vec) * Lenght) : (Vec.Clone() as Vec2d);
 		public static Vec2d GetClampedVec2(Vec2i Vec, double Lenght) => Vec2Utils.GetClampedVec2(Vec.CloneAsVec2d(), Lenght);
+
+		public static void SaveVec2iToFile(BinaryWriter bw, Vec2i Vec)
+		{
+			bw.Write(BitConverter.GetBytes(Vec.X));
+			bw.Write(BitConverter.GetBytes(Vec.Y));
+		}
+		public static void SaveVec2dToFile(BinaryWriter bw, Vec2d Vec)
+		{
+			bw.Write(BitConverter.GetBytes(Vec.X));
+			bw.Write(BitConverter.GetBytes(Vec.Y));
+		}
+
+		public static Vec2i LoadVec2iFromFile(BinaryReader br) => new Vec2i(br.ReadInt32(), br.ReadInt32());
+		public static Vec2d LoadVec2dFromFile(BinaryReader br) => new Vec2d(br.ReadDouble(), br.ReadDouble());
 
 	}
 }

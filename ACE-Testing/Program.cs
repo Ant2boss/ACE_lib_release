@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 using ACE_lib.Vectors;
 using ACE_lib.Regions;
@@ -19,23 +20,30 @@ namespace ACE_Testing
 		{
 			Can2 can = Can2.CreateCanvasSingleton("Example", 96, 32);
 
-			TextEnt2 txt = new TextEnt2(can, 64, 16);
+			SprEnt2 spr = new SprEnt2(7, 5);
 
-			txt.Clear('.');
+			//pSaveSprite(spr);
 
-			txt.TextColor = ConsoleColor.Red;
-			txt.TextBreak = true;
-
-			txt.Write("Upisite broj godina: ");
-
-			string godine = txt.ReadLineOnWithColors(can);
-
-			txt.Write(godine);
+			using (BinaryReader br = new BinaryReader(new FileStream("example.bin", FileMode.Open)))
+			{
+				spr = SprEnt2.LoadSpriteFromFile(br, can, 7, 12);
+			}
 
 			can.Draw();
 			can.DrawConnectionsColors();
 
 			Console.ReadKey();
+		}
+
+		private static void pSaveSprite(SprEnt2 spr)
+		{
+			spr.Clear('+');
+			spr.ClearColors(ConsoleColor.Cyan);
+
+			using (BinaryWriter bw = new BinaryWriter(new FileStream("example.bin", FileMode.Create)))
+			{
+				spr.SaveSpriteToFile(bw);
+			}
 		}
 	}
 }
