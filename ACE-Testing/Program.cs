@@ -19,27 +19,21 @@ namespace ACE_Testing
 		{
 			Can2 can = Can2.CreateCanvasSingleton("Example", 96, 32);
 
-			Con2 con = new Con2(can, 16, 8, 12, 6);
+			TextEnt2 txt = new TextEnt2(can, 64, 16);
 
-			Ent2 e1 = new Ent2(con, 3, 3, 1, 1);
-			e1.Clear('1');
+			txt.Clear('.');
 
-			Ent2 e2 = new Ent2(con, 3, 3, 5, 1);
-			e2.Clear('2');
+			txt.TextColor = ConsoleColor.Red;
+			txt.TextBreak = true;
 
-			Ent2 e3 = new Ent2(con, 3, 3, 9, 1);
-			e3.Clear('3');
+			txt.Write("Upisite broj godina: ");
 
+			string godine = txt.ReadLineOnWithColors(can);
 
-			con.AddConnection(e3);
-			con.AddConnection(e3);
-			con.AddConnection(e3);
-			con.AddConnection(e3);
-			con.AddConnection(e3);
+			txt.Write(godine);
 
-			can.SetAt((char)((int)'0' + con.ConnectedCount), 0, 0);
-
-			can.DrawAndReadLine(ConsoleColor.Red, 2, 2);
+			can.Draw();
+			can.DrawConnectionsColors();
 
 			Console.ReadKey();
 		}

@@ -217,6 +217,8 @@ namespace ACE_lib.Content.Entities
 			this.OnPostColorDraw?.Invoke(this, new EventArgs());
 		}
 
+		public override string ToString() => $"Ent2[Region: ({this.GetRegion()})]";
+
 		private void pForEach(Action<int, int> a)
 		{
 			for (int y = 0; y < this.pSize.Y; ++y)

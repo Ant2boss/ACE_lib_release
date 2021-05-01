@@ -41,12 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Args\OnAddedArgs.cs" />
     <Compile Include="Args\OnModifiedArgs.cs" />
     <Compile Include="Args\OnValueChangedArgs.cs" />
     <Compile Include="Content\absControllerBase.cs" />
     <Compile Include="Content\Canvases\Can2.cs" />
     <Compile Include="Content\Controllers\Con2.cs" />
     <Compile Include="Content\Entities\Ent2.cs" />
+    <Compile Include="Content\Entities\TextEnt2.cs" />
     <Compile Include="Content\IConnectable2.cs" />
     <Compile Include="Content\absConnectableBase.cs" />
     <Compile Include="Content\IContent2.cs" />
