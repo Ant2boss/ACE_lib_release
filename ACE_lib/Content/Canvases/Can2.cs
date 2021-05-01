@@ -11,8 +11,6 @@ using ACE_lib.Regions;
 
 namespace ACE_lib.Content.Canvases
 {
-	//Implement IConnectable when IContent gets created
-
 	public class Can2 : absConnectableBase, IModifiable2<char>, IReg2_readonly
 	{
 		public static Can2 CreateCanvasSingleton(string Title, int xSize, int ySize)
@@ -33,6 +31,12 @@ namespace ACE_lib.Content.Canvases
 
 		public event EventHandler<OnModifiedArgs<char>> OnContentModified;
 		public event EventHandler OnContentCleared;
+
+		public event EventHandler OnPreDrawn;
+		public event EventHandler OnPostDrawn;
+
+		public event EventHandler OnPreConnectionColorsDrawn;
+		public event EventHandler OnPostConnectionColorsDrawn;
 
 		public char this[Vec2i Index] { get => this.GetAt(Index); set => this.SetAt(value, Index); }
 		public char this[int x, int y] { get => this.GetAt(x, y); set => this.SetAt(value, x, y); }
@@ -76,8 +80,12 @@ namespace ACE_lib.Content.Canvases
 		{
 			this.AppendConnectionsToSelf();
 
+			this.OnPreDrawn?.Invoke(this, new EventArgs());
+
 			Console.SetCursorPosition(0, 0);
 			Console.Write(this.pBuffer);
+
+			this.OnPostDrawn?.Invoke(this, new EventArgs());
 		}
 		public void DrawColorAt(ConsoleColor Col, int x, int y)
 		{
@@ -88,6 +96,58 @@ namespace ACE_lib.Content.Canvases
 
 			Console.ResetColor();
 		}
+		public void DrawConnectionsColors()
+		{
+			this.OnPreConnectionColorsDrawn?.Invoke(this, new EventArgs());
+
+			for (int i = 0; i < this.ConnectedCount; ++i)
+			{
+				this.GetConnectedDetails(i).DrawColorsToCan(this);
+			}
+
+			this.OnPostConnectionColorsDrawn?.Invoke(this, new EventArgs());
+		}
+
+		public string DrawAndReadLine(ConsoleColor TextColor, int xCursor, int yCursor)
+		{
+			this.Draw();
+
+			Console.SetCursorPosition(xCursor + this.pOffset.X, yCursor + this.pOffset.Y);
+
+			Console.ForegroundColor = TextColor;
+			Console.CursorVisible = true;
+
+			string result = Console.ReadLine();
+
+			Console.CursorVisible = false;
+			Console.ResetColor();
+
+			return result;
+		}
+		public string DrawAndReadLine(int xCursor, int yCursor) => this.DrawAndReadLine(ConsoleColor.Gray, xCursor, yCursor);
+		public string DrawAndReadLine(Vec2i CursorPos) => this.DrawAndReadLine(ConsoleColor.Gray, CursorPos.X, CursorPos.Y);
+		public string DrawAndReadLine(ConsoleColor TextColor, Vec2i CursorPos) => this.DrawAndReadLine(TextColor, CursorPos.X, CursorPos.Y);
+
+		public string DrawColorsAndReadLine(ConsoleColor TextColor, int xCursor, int yCursor)
+		{
+			this.Draw();
+			this.DrawConnectionsColors();
+
+			Console.SetCursorPosition(xCursor + this.pOffset.X, yCursor + this.pOffset.Y);
+
+			Console.ForegroundColor = TextColor;
+			Console.CursorVisible = true;
+
+			string result = Console.ReadLine();
+
+			Console.CursorVisible = false;
+			Console.ResetColor();
+
+			return result;
+		}
+		public string DrawColorsAndReadLine(int xCursor, int yCursor) => this.DrawColorsAndReadLine(ConsoleColor.Gray, xCursor, yCursor);
+		public string DrawColorsAndReadLine(Vec2i CursorPos) => this.DrawColorsAndReadLine(ConsoleColor.Gray, CursorPos.X, CursorPos.Y);
+		public string DrawColorsAndReadLine(ConsoleColor TextColor, Vec2i CursorPos) => this.DrawColorsAndReadLine(TextColor, CursorPos.X, CursorPos.Y);
 
 		private bool pCheckIndex(int x, int y) => x < 0 || y < 0 || x >= this.GetSize().X || y >= this.GetSize().Y;
 

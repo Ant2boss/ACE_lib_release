@@ -39,7 +39,7 @@ namespace ACE_Testing
 
 			can.SetAt((char)((int)'0' + con.ConnectedCount), 0, 0);
 
-			can.Draw();
+			can.DrawAndReadLine(ConsoleColor.Red, 2, 2);
 
 			Console.ReadKey();
 		}
