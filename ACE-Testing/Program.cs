@@ -20,20 +20,37 @@ namespace ACE_Testing
 		{
 			Can2 can = Can2.CreateCanvasSingleton("Example", 96, 32);
 
-			AnimationEnt2 anim = new AnimationEnt2(can, 5, 5);
+			//AnimationEnt2 anim = new AnimationEnt2(can, 5, 5);
+			AnimationEnt2 anim;
 
-			anim.AddFrame();
-			anim.Clear('1');
+			using (BinaryReader br = new BinaryReader(new FileStream("example.bin", FileMode.Open)))
+			{
+				anim = AnimationEnt2.LoadAnimationFromFile(br, 9, 3);
+			}
 
-			anim.AddFrame(true);
-			anim.Clear('2');
-			
-			anim.AddFrame(true);
-			anim.Clear('3');
+			anim.CurrentFrameIndex = 2;
+			anim.AppendTo(can);
 
-			anim.SetAtFrame(0, '$', 0, 0);
+			//anim.AddFrame();
+			//anim.Clear('1');
 
-			anim.CurrentFrameIndex = 0;
+			//anim.AddFrame(true);
+			//anim.Clear('2');
+
+			//anim.AddFrame(true);
+			//anim.Clear('3');
+
+			//anim.SetAtFrame(0, '$', 0, 0);
+
+			//anim.SetSize(3, 3);
+			//anim.SetPosition(21, 7);
+
+			//anim.CurrentFrameIndex = 2;
+
+			//using (BinaryWriter bw = new BinaryWriter(new FileStream("example.bin", FileMode.OpenOrCreate)))
+			//{
+			//	anim.SaveAnimationToFile(bw);
+			//}
 
 			can.Draw();
 			//can.DrawConnectionsColors();

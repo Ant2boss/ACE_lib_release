@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -140,7 +141,8 @@ namespace ACE_lib.Content.Entities
 		public void SetAtFrame(int FrameIndex, char el, int x, int y)
 		{
 			if (FrameIndex < 0 || FrameIndex >= this.pFrameList.Count || this.pCheckIndex(x, y)) throw new IndexOutOfRangeException();
-			this.pUpdateFrame(FrameIndex);
+			//Redundtant / not neccessary
+			//this.pUpdateFrame(FrameIndex);
 
 			this.pFrameList[FrameIndex].SetAt(el, x, y);
 
@@ -151,7 +153,8 @@ namespace ACE_lib.Content.Entities
 		public void SetColorAtFrame(int FrameIndex, ConsoleColor Col, int x, int y)
 		{
 			if (FrameIndex < 0 || FrameIndex >= this.pFrameList.Count || this.pCheckIndex(x, y)) throw new IndexOutOfRangeException();
-			this.pUpdateFrame(FrameIndex);
+			//Redundtant / not neccessary
+			//this.pUpdateFrame(FrameIndex);
 
 			this.pFrameList[FrameIndex].SetColorAt(Col, x, y);
 
@@ -163,7 +166,8 @@ namespace ACE_lib.Content.Entities
 		{
 			if (FrameIndex < 0 || FrameIndex >= this.pFrameList.Count || this.pCheckIndex(x, y)) throw new IndexOutOfRangeException();
 
-			this.pUpdateFrame(FrameIndex);
+			//Redundtant / not neccessary
+			//this.pUpdateFrame(FrameIndex);
 
 			return this.pFrameList[FrameIndex].GetAt(x, y);
 		}
@@ -173,7 +177,8 @@ namespace ACE_lib.Content.Entities
 		{
 			if (FrameIndex < 0 || FrameIndex >= this.pFrameList.Count || this.pCheckIndex(x, y)) throw new IndexOutOfRangeException();
 
-			this.pUpdateFrame(FrameIndex);
+			//Redundtant / not neccessary
+			//this.pUpdateFrame(FrameIndex);
 
 			return this.pFrameList[FrameIndex].GetColorAt(x, y);
 		}
@@ -231,9 +236,11 @@ namespace ACE_lib.Content.Entities
 			Vec2i Old = this.GetSize();
 
 			this.pSize.Init(xSize, ySize);
+			this.pUpdateFrames();
 
 			this.OnSizeChanged?.Invoke(this, new OnValueChangedArgs<Vec2i> { OldValue = Old, NewValue = this.GetSize() });
 		}
+
 		public void SetSize(Vec2i Size) => this.SetSize(Size.X, Size.Y);
 		public void ResizeTo(int xSize, int ySize) => this.SetSize(xSize, ySize);
 		public void ResizeTo(Vec2i Size) => this.SetSize(Size.X, Size.Y);
@@ -291,8 +298,62 @@ namespace ACE_lib.Content.Entities
 			this.OnPostColorDraw?.Invoke(this, new EventArgs());
 		}
 
+		public void SaveAnimationToFile(BinaryWriter bw)
+		{
+			bw.Write(this.FrameCount);
+			for (int i = 0; i < this.FrameCount; ++i)
+			{
+				this.pFrameList[i].SaveSpriteToFile(bw);
+			}
+		}
+
+		public static AnimationEnt2 LoadAnimationFromFile(BinaryReader br)
+		{
+			int count = br.ReadInt32();
+			SprEnt2 temp = SprEnt2.LoadSpriteFromFile(br);
+
+			AnimationEnt2 result = new AnimationEnt2(temp.GetSize());
+			result.AddFrameAndCopyContent(temp);
+
+			for (int i = 1; i < count; ++i)
+			{
+				result.AddFrameAndCopyContent(SprEnt2.LoadSpriteFromFile(br));
+			}
+
+			result.CurrentFrameIndex = 0;
+
+			return result;
+		}
+		public static AnimationEnt2 LoadAnimationFromFile(BinaryReader br, double xPos, double yPos)
+		{
+			AnimationEnt2 result = LoadAnimationFromFile(br);
+			result.SetPosition(xPos, yPos);
+			return result;
+		}
+		public static AnimationEnt2 LoadAnimationFromFile(BinaryReader br, IConnectable2 Parent, double xPos, double yPos)
+		{
+			AnimationEnt2 result = LoadAnimationFromFile(br, xPos, yPos);
+			Parent.AddConnection(result);
+			return result;
+		}
+
+		public static AnimationEnt2 LoadAnimationFromFile(BinaryReader br, IConnectable2 Parent) => LoadAnimationFromFile(br, Parent, 0, 0);
+
+		public static AnimationEnt2 LoadAnimationFromFile(BinaryReader br, Vec2i Position) => LoadAnimationFromFile(br, Position.X, Position.Y);
+		public static AnimationEnt2 LoadAnimationFromFile(BinaryReader br, Vec2d Position) => LoadAnimationFromFile(br, Position.X, Position.Y);
+
+		public static AnimationEnt2 LoadAnimationFromFile(BinaryReader br, IConnectable2 Parent, Vec2i Position) => LoadAnimationFromFile(br, Parent, Position.X, Position.Y);
+		public static AnimationEnt2 LoadAnimationFromFile(BinaryReader br, IConnectable2 Parent, Vec2d Position) => LoadAnimationFromFile(br, Parent, Position.X, Position.Y);
+
 		private bool pCheckIndex(int x, int y) => (x < 0 || y < 0 || x >= this.pSize.X || y >= this.pSize.Y);
 
+		private void pUpdateFrames()
+		{
+			for (int i = 0; i < this.FrameCount; ++i)
+			{
+				this.pUpdateFrame(i);
+			}
+		}
 		private void pUpdateFrame(int FrameIndex)
 		{
 			if (this.pFrameList[FrameIndex].GetSize() != this.pSize)
