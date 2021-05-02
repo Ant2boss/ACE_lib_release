@@ -20,17 +20,23 @@ namespace ACE_Testing
 		{
 			Can2 can = Can2.CreateCanvasSingleton("Example", 96, 32);
 
-			SprEnt2 spr = new SprEnt2(7, 5);
+			AnimationEnt2 anim = new AnimationEnt2(can, 5, 5);
 
-			//pSaveSprite(spr);
+			anim.AddFrame();
+			anim.Clear('1');
 
-			using (BinaryReader br = new BinaryReader(new FileStream("example.bin", FileMode.Open)))
-			{
-				spr = SprEnt2.LoadSpriteFromFile(br, can, 7, 12);
-			}
+			anim.AddFrame(true);
+			anim.Clear('2');
+			
+			anim.AddFrame(true);
+			anim.Clear('3');
+
+			anim.SetAtFrame(0, '$', 0, 0);
+
+			anim.CurrentFrameIndex = 0;
 
 			can.Draw();
-			can.DrawConnectionsColors();
+			//can.DrawConnectionsColors();
 
 			Console.ReadKey();
 		}
