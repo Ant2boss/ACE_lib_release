@@ -20,53 +20,24 @@ namespace ACE_Testing
 		{
 			Can2 can = Can2.CreateCanvasSingleton("Example", 96, 32);
 
-			//AnimationEnt2 anim = new AnimationEnt2(can, 5, 5);
-			AnimationEnt2 anim;
+			LayoutCon2 lay = new LayoutCon2(can, 64, 30, 3, 3);
 
-			using (BinaryReader br = new BinaryReader(new FileStream("example.bin", FileMode.Open)))
+			lay.AddConnection(new Ent2(20, 3));
+			lay.AddConnection(new Ent2(10, 2));
+			lay.AddConnection(new Ent2(7, 3));
+			lay.AddConnection(new Ent2(10, 5));
+
+			lay.LayoutDirection = LayoutCon2.LayDir.TopToBottom;
+			lay.ContentInitialOffset = new Vec2i(2, 1);
+
+			for (int i = 0; i < lay.ConnectedCount; ++i)
 			{
-				anim = AnimationEnt2.LoadAnimationFromFile(br, 9, 3);
+				lay.GetConnectedDetails(i).Clear((char)('0' + i));
 			}
-
-			anim.CurrentFrameIndex = 2;
-			anim.AppendTo(can);
-
-			//anim.AddFrame();
-			//anim.Clear('1');
-
-			//anim.AddFrame(true);
-			//anim.Clear('2');
-
-			//anim.AddFrame(true);
-			//anim.Clear('3');
-
-			//anim.SetAtFrame(0, '$', 0, 0);
-
-			//anim.SetSize(3, 3);
-			//anim.SetPosition(21, 7);
-
-			//anim.CurrentFrameIndex = 2;
-
-			//using (BinaryWriter bw = new BinaryWriter(new FileStream("example.bin", FileMode.OpenOrCreate)))
-			//{
-			//	anim.SaveAnimationToFile(bw);
-			//}
 
 			can.Draw();
-			//can.DrawConnectionsColors();
 
 			Console.ReadKey();
-		}
-
-		private static void pSaveSprite(SprEnt2 spr)
-		{
-			spr.Clear('+');
-			spr.ClearColors(ConsoleColor.Cyan);
-
-			using (BinaryWriter bw = new BinaryWriter(new FileStream("example.bin", FileMode.Create)))
-			{
-				spr.SaveSpriteToFile(bw);
-			}
 		}
 	}
 }

@@ -47,6 +47,8 @@
     <Compile Include="Content\absControllerBase.cs" />
     <Compile Include="Content\Canvases\Can2.cs" />
     <Compile Include="Content\Controllers\Con2.cs" />
+    <Compile Include="Content\Controllers\GridCon2.cs" />
+    <Compile Include="Content\Controllers\LayoutCon2.cs" />
     <Compile Include="Content\Entities\AnimationEnt2.cs" />
     <Compile Include="Content\Entities\Ent2.cs" />
     <Compile Include="Content\Entities\SprEnt2.cs" />
