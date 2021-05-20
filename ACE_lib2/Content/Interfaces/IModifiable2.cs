@@ -8,8 +8,13 @@ using ACE_2D_Base.Vectors;
 
 namespace ACE_lib2.Content.Interfaces
 {
-	public interface IMatrix2<T>
+	public interface IModifiable2<T>
 	{
+		event EventHandler OnCleared;
+
+		T this[int x, int y] { get; set; }
+		T this[Vec2i Index] { get; set; }
+
 		void SetAt(T el, int x, int y);
 		void SetAt(T el, Vec2i Index);
 

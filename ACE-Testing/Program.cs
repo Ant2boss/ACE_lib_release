@@ -8,10 +8,7 @@ using System.IO;
 using ACE_2D_Base.Vectors;
 using ACE_2D_Base.Regions;
 
-using ACE_lib.Content.Canvases;
-using ACE_lib.Content.Entities;
-using ACE_lib.Content.Controllers;
-using ACE_lib.Content.Props;
+using ACE_lib2.Content.Canvases;
 
 namespace ACE_Testing
 {
@@ -19,24 +16,18 @@ namespace ACE_Testing
 	{
 		static void Main(string[] args)
 		{
-			Can2 can = Can2.CreateCanvasSingleton("Example", 96, 32);
+			Canvas2 can = new Canvas2("Testing", 96, 32);
 
-			LayoutCon2 lay = new LayoutCon2(can, 64, 24, 3, 3);
+			can.SetAt('0', 0, 0);
+			can.SetAt('1', 95, 0);
+			can.SetAt('2', 0, 31);
+			can.SetAt('3', 95, 31);
 
-			lay.AddConnection(new Ent2(20, 3));
-			lay.AddConnection(new Ent2(10, 2));
-			lay.AddConnection(new Ent2(7, 3));
-			lay.AddConnection(new Ent2(10, 5));
-
-			lay.LayoutDirection = LayoutCon2.LayDir.TopToBottom;
-			lay.ContentInitialOffset = new Vec2i(2, 1);
-
-			for (int i = 0; i < lay.ConnectedCount; ++i)
-			{
-				lay.GetConnectedDetails(i).Clear((char)('0' + i));
-			}
+			can[1, 1] = '+';
 
 			can.Draw();
+			can.DrawColorAt(ConsoleColor.Red, 0, 0);
+			can.DrawColorAt(ConsoleColor.Cyan, new Vec2i(1, 1));
 
 			Console.ReadKey();
 		}
