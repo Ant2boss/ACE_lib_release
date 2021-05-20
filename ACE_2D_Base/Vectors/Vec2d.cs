@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using ACE_lib.Args;
+using ACE_2D_Base.Args;
 
-namespace ACE_lib.Vectors
+namespace ACE_2D_Base.Vectors
 {
 	public sealed class Vec2d : ICloneable
 	{

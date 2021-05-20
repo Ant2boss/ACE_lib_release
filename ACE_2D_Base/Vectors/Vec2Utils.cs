@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ACE_lib.Vectors
+namespace ACE_2D_Base.Vectors
 {
 	public class Vec2Utils
 	{

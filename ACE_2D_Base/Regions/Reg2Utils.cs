@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using ACE_lib.Vectors;
+using ACE_2D_Base.Vectors;
 
-namespace ACE_lib.Regions
+namespace ACE_2D_Base.Regions
 {
 	public static class Reg2Utils
 	{

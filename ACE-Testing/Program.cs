@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-using ACE_lib.Vectors;
-using ACE_lib.Regions;
+using ACE_2D_Base.Vectors;
+using ACE_2D_Base.Regions;
+
 using ACE_lib.Content.Canvases;
 using ACE_lib.Content.Entities;
 using ACE_lib.Content.Controllers;
@@ -20,7 +21,7 @@ namespace ACE_Testing
 		{
 			Can2 can = Can2.CreateCanvasSingleton("Example", 96, 32);
 
-			LayoutCon2 lay = new LayoutCon2(can, 64, 30, 3, 3);
+			LayoutCon2 lay = new LayoutCon2(can, 64, 24, 3, 3);
 
 			lay.AddConnection(new Ent2(20, 3));
 			lay.AddConnection(new Ent2(10, 2));

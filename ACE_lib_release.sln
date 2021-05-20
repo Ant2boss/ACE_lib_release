@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACE-Testing", "ACE-Testing\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACE_lib", "ACE_lib\ACE_lib.csproj", "{CC155EC3-534C-4557-AABD-152501335CDD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACE_2D_Base", "ACE_2D_Base\ACE_2D_Base.csproj", "{468C1FCC-4920-4C10-9810-E265F4F1FBD7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CC155EC3-534C-4557-AABD-152501335CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC155EC3-534C-4557-AABD-152501335CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC155EC3-534C-4557-AABD-152501335CDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{468C1FCC-4920-4C10-9810-E265F4F1FBD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{468C1FCC-4920-4C10-9810-E265F4F1FBD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{468C1FCC-4920-4C10-9810-E265F4F1FBD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{468C1FCC-4920-4C10-9810-E265F4F1FBD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

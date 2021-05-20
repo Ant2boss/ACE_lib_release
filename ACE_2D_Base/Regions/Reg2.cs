@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using ACE_lib.Vectors;
-using ACE_lib.Args;
+using ACE_2D_Base.Vectors;
+using ACE_2D_Base.Args;
 
-namespace ACE_lib.Regions
+namespace ACE_2D_Base.Regions
 {
 	public sealed class Reg2 : ICloneable
 	{

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CC155EC3-534C-4557-AABD-152501335CDD}</ProjectGuid>
+    <ProjectGuid>{468C1FCC-4920-4C10-9810-E265F4F1FBD7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ACE_lib</RootNamespace>
-    <AssemblyName>ACE_lib</AssemblyName>
+    <RootNamespace>ACE_2D_BaseLib</RootNamespace>
+    <AssemblyName>ACE_2D_BaseLib</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,37 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Args\OnAddedArgs.cs" />
-    <Compile Include="Args\OnModifiedArgs.cs" />
     <Compile Include="Args\OnValueChangedArgs.cs" />
-    <Compile Include="Content\absControllerBase.cs" />
-    <Compile Include="Content\Canvases\Can2.cs" />
-    <Compile Include="Content\Controllers\Con2.cs" />
-    <Compile Include="Content\Controllers\GridCon2.cs" />
-    <Compile Include="Content\Controllers\LayoutCon2.cs" />
-    <Compile Include="Content\Entities\AnimationEnt2.cs" />
-    <Compile Include="Content\Entities\Ent2.cs" />
-    <Compile Include="Content\Entities\SprEnt2.cs" />
-    <Compile Include="Content\Entities\TextEnt2.cs" />
-    <Compile Include="Content\IConnectable2.cs" />
-    <Compile Include="Content\absConnectableBase.cs" />
-    <Compile Include="Content\IContent2.cs" />
-    <Compile Include="Content\IController2.cs" />
-    <Compile Include="Content\IModifiable2.cs" />
-    <Compile Include="Content\IPosition2.cs" />
-    <Compile Include="Content\IPosition2_readonly.cs" />
-    <Compile Include="Content\IReg2.cs" />
-    <Compile Include="Content\IReg2_readonly.cs" />
-    <Compile Include="Content\ISize2.cs" />
-    <Compile Include="Content\ISize2_readonly.cs" />
-    <Compile Include="Content\Props\BorderProps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ACE_2D_Base\ACE_2D_Base.csproj">
-      <Project>{468c1fcc-4920-4c10-9810-e265f4f1fbd7}</Project>
-      <Name>ACE_2D_Base</Name>
-    </ProjectReference>
+    <Compile Include="Regions\Reg2.cs" />
+    <Compile Include="Regions\Reg2Utils.cs" />
+    <Compile Include="Vectors\Vec2d.cs" />
+    <Compile Include="Vectors\Vec2i.cs" />
+    <Compile Include="Vectors\Vec2Utils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

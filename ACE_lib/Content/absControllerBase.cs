@@ -8,8 +8,8 @@ using ACE_lib.Args;
 using ACE_lib.Content.Canvases;
 using ACE_lib.Content.Props;
 using ACE_lib.Content.Entities;
-using ACE_lib.Regions;
-using ACE_lib.Vectors;
+using ACE_2D_Base.Regions;
+using ACE_2D_Base.Vectors;
 
 
 namespace ACE_lib.Content
