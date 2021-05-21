@@ -9,6 +9,7 @@ using ACE_2D_Base.Vectors;
 using ACE_2D_Base.Regions;
 
 using ACE_lib2.Content.Canvases;
+using ACE_lib2.Content.Entities;
 
 namespace ACE_Testing
 {
@@ -18,16 +19,19 @@ namespace ACE_Testing
 		{
 			Canvas2 can = new Canvas2("Testing", 96, 32);
 
-			can.SetAt('0', 0, 0);
-			can.SetAt('1', 95, 0);
-			can.SetAt('2', 0, 31);
-			can.SetAt('3', 95, 31);
+			Entity2 ent = new Entity2(7, 5);
 
-			can[1, 1] = '+';
+			ent.Clear('1');
+			ent.ClearColors(ConsoleColor.Cyan);
+
+			ent.Region.SetPosition(4, 2);
+
+			ent.SetAt('0', 3, 1);
+
+			ent.AppendTo(can);
 
 			can.Draw();
-			can.DrawColorAt(ConsoleColor.Red, 0, 0);
-			can.DrawColorAt(ConsoleColor.Cyan, new Vec2i(1, 1));
+			ent.DrawColorTo(can);
 
 			Console.ReadKey();
 		}

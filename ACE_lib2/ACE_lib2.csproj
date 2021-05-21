@@ -41,8 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Args\OnChangedArgs.cs" />
+    <Compile Include="Content\Abstracts\abs_Content2.cs" />
     <Compile Include="Content\Abstracts\abs_Modifiable2.cs" />
     <Compile Include="Content\Canvases\Canvas2.cs" />
+    <Compile Include="Content\Entities\Entity2.cs" />
+    <Compile Include="Content\Interfaces\IContent2.cs" />
     <Compile Include="Content\Interfaces\IModifiable2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

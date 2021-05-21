@@ -32,6 +32,9 @@ namespace ACE_2D_Base.Regions
 		public event EventHandler<OnValueChangedArgs<Vec2i>> OnSizeChanged;
 		public event EventHandler<OnValueChangedArgs<Vec2d>> OnPositionChanged;
 
+		public static bool operator ==(Reg2 R1, Reg2 R2) => (R1 is null) ? (R2 is null) : (R1.Equals(R2));
+		public static bool operator !=(Reg2 R1, Reg2 R2) => (R1 is null) ? !(R2 is null) : (!R1.Equals(R2));
+
 		public void SetSize(int xSize, int ySize)
 		{
 			Vec2i oldVal = this.pSize.Clone() as Vec2i;

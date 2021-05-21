@@ -56,8 +56,8 @@ namespace ACE_2D_Base.Vectors
 		public static Vec2d operator *(Vec2d V, double Val) => new Vec2d(V.Y * Val, V.Y * Val);
 		public static Vec2d operator /(Vec2d V, double Val) => new Vec2d(V.Y / Val, V.Y / Val);
 
-		public static bool operator ==(Vec2d V1, Vec2d V2) => V1.Equals(V2);
-		public static bool operator !=(Vec2d V1, Vec2d V2) => !V1.Equals(V2);
+		public static bool operator ==(Vec2d V1, Vec2d V2) => (V1 is null) ? (V2 is null) : (V1.Equals(V2));
+		public static bool operator !=(Vec2d V1, Vec2d V2) => (V1 is null) ? !(V2 is null) : !V1.Equals(V2);
 
 		public object Clone() => new Vec2d(this.X, this.Y);
 		public Vec2i CloneAsVec2i() => new Vec2i((int)this.X, (int)this.Y);
