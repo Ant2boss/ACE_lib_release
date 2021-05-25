@@ -11,14 +11,27 @@ namespace ACE_lib2.Content.Canvases
 {
 	public class Canvas2 : abs_Modifiable2<char>
 	{
-		public Canvas2(string Title, int xSize, int ySize)
+		private Canvas2(string Title, int xSize, int ySize)
 		{
 			this._InitBuffer(xSize, ySize);
 			this._InitConsole(Title);
 
 			this._FillBuffer();
 		}
-		public Canvas2(string Title, Vec2i Size) : this(Title, Size.X, Size.Y) { }
+
+		private static Canvas2 _CanSingleton;
+
+		public static Canvas2 CreateCanvasSingleton(string Title, int xSize, int ySize)
+		{
+			if (_CanSingleton != null)
+			{
+				throw new Exception("Canvas2 already exists");
+			}
+
+			_CanSingleton = new Canvas2(Title, xSize, ySize);
+			return _CanSingleton;
+		}
+		public static Canvas2 CreateCanvasSingleton(string Title, Vec2i Size) => CreateCanvasSingleton(Title, Size.X, Size.Y);
 
 		public event EventHandler OnPreCanvasDraw;
 		public event EventHandler OnPostCanvasDraw;

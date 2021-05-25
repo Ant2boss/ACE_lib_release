@@ -17,7 +17,7 @@ namespace ACE_Testing
 	{
 		static void Main(string[] args)
 		{
-			Canvas2 can = new Canvas2("Testing", 96, 32);
+			Canvas2 can = Canvas2.CreateCanvasSingleton("Test", 96, 32);
 
 			Entity2 ent = new Entity2(7, 5);
 
