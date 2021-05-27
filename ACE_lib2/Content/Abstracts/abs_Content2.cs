@@ -77,7 +77,7 @@ namespace ACE_lib2.Content.Abstracts
 			}, Parent.GetSize());
 		}
 
-		public void DrawColorTo(Canvas2 Can)
+		public void DrawColorsTo(Canvas2 Can)
 		{
 			this._Attacher((x, y, px, py) => {
 				Can.DrawColorAt(this.GetColorAt(x, y), px, py);

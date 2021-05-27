@@ -19,19 +19,20 @@ namespace ACE_Testing
 		{
 			Canvas2 can = Canvas2.CreateCanvasSingleton("Test", 96, 32);
 
-			Entity2 ent = new Entity2(7, 5);
+			TextEntity2 txt = new TextEntity2(can, 32, 16);
 
-			ent.Clear('1');
-			ent.ClearColors(ConsoleColor.Cyan);
+			txt.Clear('-');
 
-			ent.Region.SetPosition(4, 2);
+			txt.TextBreak = true;
+			txt.TextColor = ConsoleColor.Yellow;
 
-			ent.SetAt('0', 3, 1);
-
-			ent.AppendTo(can);
+			txt.WriteLine("Hello once");
+			txt.WriteLine("Hello twice", ConsoleColor.Red);
+			txt.WriteLine("Hello thrice", ConsoleColor.White);
+			txt.WriteLine("Hello four times", ConsoleColor.Cyan);
 
 			can.Draw();
-			ent.DrawColorTo(can);
+			//can.DrawConnectionsColors();
 
 			Console.ReadKey();
 		}

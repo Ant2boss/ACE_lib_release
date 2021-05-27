@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ACE_2D_Base.Vectors;
+using ACE_lib2.Args;
 using ACE_lib2.Content.Abstracts;
 using ACE_lib2.Content.Interfaces;
 
 namespace ACE_lib2.Content.Canvases
 {
-	public class Canvas2 : abs_Modifiable2<char>
+	public class Canvas2 : abs_Modifiable2<char>, IConnectable2
 	{
 		private Canvas2(string Title, int xSize, int ySize)
 		{
@@ -17,6 +18,8 @@ namespace ACE_lib2.Content.Canvases
 			this._InitConsole(Title);
 
 			this._FillBuffer();
+
+			this._Connections = new List<IContent2>();
 		}
 
 		private static Canvas2 _CanSingleton;
@@ -35,6 +38,10 @@ namespace ACE_lib2.Content.Canvases
 
 		public event EventHandler OnPreCanvasDraw;
 		public event EventHandler OnPostCanvasDraw;
+		public event EventHandler<OnInfoArgs<IContent2>> OnConnectionAdded;
+		public event EventHandler<OnInfoArgs<IContent2>> OnConnectionDropped;
+		public event EventHandler OnPreAppendingToSelf;
+		public event EventHandler OnPostAppendingToSelf;
 
 		public override void SetAt(char el, int x, int y)
 		{
@@ -51,11 +58,74 @@ namespace ACE_lib2.Content.Canvases
 
 		public override Vec2i GetSize() => this._Size.Clone() as Vec2i;
 
+		public int ConnectedCount => this._Connections.Count;
+
+		public bool AddConnection(IContent2 Content)
+		{
+			if (!this.IsConnected(Content))
+			{
+				this._Connections.Add(Content);
+
+				this.OnConnectionAdded?.Invoke(this, new OnInfoArgs<IContent2> { Content = Content });
+
+				return true;
+			}
+			return false;
+		}
+		public bool DropConnection(IContent2 Content)
+		{
+			if (this._Connections.Remove(Content))
+			{
+				this.OnConnectionDropped?.Invoke(this, new OnInfoArgs<IContent2> { Content = Content });
+				return true;
+			}
+			return false;
+		}
+
+		public bool IsConnected(IContent2 Content)
+		{
+			if (this._Connections.Contains(Content)) return true;
+
+			foreach (IContent2 Cont in this._Connections)
+			{
+				if (Cont is IConnectable2 tCon && tCon.IsConnected(Content))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		public IContent2 GetConnected(int ConnectedIndex)
+		{
+			return this._Connections[ConnectedIndex];
+		}
+
+		public void AppendConnectionsToSelf()
+		{
+			this.OnPreAppendingToSelf?.Invoke(this, new EventArgs());
+
+			foreach (IContent2 content in this._Connections)
+			{
+				if (content is IConnectable2 tcon)
+				{
+					tcon.AppendConnectionsToSelf();
+				}
+
+				content.AppendTo(this);
+			}
+
+			this.OnPostAppendingToSelf?.Invoke(this, new EventArgs());
+		}
+
 		public void Draw()
 		{
 			this.OnPreCanvasDraw?.Invoke(this, new EventArgs());
 
 			Console.SetCursorPosition(0, 0);
+			this.AppendConnectionsToSelf();
+
 			Console.Write(this._Buffer);
 
 			this.OnPostCanvasDraw?.Invoke(this, new EventArgs());
@@ -72,6 +142,23 @@ namespace ACE_lib2.Content.Canvases
 			Console.ResetColor();
 		}
 		public void DrawColorAt(ConsoleColor Col, Vec2i Index) => this.DrawColorAt(Col, Index.X, Index.Y);
+
+		public void DrawConnectionsColors()
+		{
+			this.OnPreAppendingToSelf?.Invoke(this, new EventArgs());
+
+			foreach (IContent2 content in this._Connections)
+			{
+				if (content is IConnectable2 tcon)
+				{
+					tcon.AppendConnectionsToSelf();
+				}
+
+				content.DrawColorsTo(this);
+			}
+
+			this.OnPostAppendingToSelf?.Invoke(this, new EventArgs());
+		}
 
 		private void _CheckIndex(int x, int y)
 		{
@@ -126,12 +213,15 @@ namespace ACE_lib2.Content.Canvases
 			}
 		}
 
+
 		private char[] _Buffer;
+		private IList<IContent2> _Connections;
 
 		private Vec2i _BuffSize;
 		private Vec2i _Size;
 
 		private Vec2i _Offset;
+
 
 	}
 }

@@ -34,6 +34,6 @@ namespace ACE_lib2.Content.Interfaces
 
 		void AppendTo(IModifiable2<char> Parent);
 		void AppendTo(IContent2 Parent);
-		void DrawColorTo(Canvas2 Can);
+		void DrawColorsTo(Canvas2 Can);
 	}
 }
