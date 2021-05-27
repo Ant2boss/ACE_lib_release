@@ -46,7 +46,7 @@ namespace ACE_lib2.Content.Entities
 
 				for (int i = 0; i < words.Length; ++i)
 				{
-					if (this._CanFit(words[i]))
+					if (this._CantFit(words[i]))
 					{
 						this._NewLine();
 					}
@@ -83,7 +83,7 @@ namespace ACE_lib2.Content.Entities
 		public void WriteLine(object obj) => this.Write($"{obj}\n");
 		public void WriteLine(object obj, ConsoleColor Col) => this.Write($"{obj}\n", Col);
 
-		private bool _CanFit(string word)
+		private bool _CantFit(string word)
 		{
 			int totalLen = this.CursorPosition.X;
 
