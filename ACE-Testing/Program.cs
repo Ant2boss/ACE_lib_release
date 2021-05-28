@@ -10,6 +10,7 @@ using ACE_2D_Base.Regions;
 
 using ACE_lib2.Content.Canvases;
 using ACE_lib2.Content.Entities;
+using ACE_lib2.Content;
 
 namespace ACE_Testing
 {
@@ -19,20 +20,22 @@ namespace ACE_Testing
 		{
 			Canvas2 can = Canvas2.CreateCanvasSingleton("Test", 96, 32);
 
-			TextEntity2 txt = new TextEntity2(can, 32, 16);
+			Entity2 ent = new Entity2(can, can.GetSize());
 
-			txt.Clear('-');
+			//ent.Clear('-');
 
-			txt.TextBreak = true;
-			txt.TextColor = ConsoleColor.Yellow;
+			//ContentUtils.AppendLine(ent, '#', 14, 14, 2, 2);
 
-			txt.WriteLine("Hello once");
-			txt.WriteLine("Hello twice", ConsoleColor.Red);
-			txt.WriteLine("Hello thrice", ConsoleColor.White);
-			txt.WriteLine("Hello four times", ConsoleColor.Cyan);
+			Vec2i Start = new Vec2i(61, 20);
+			Vec2i End = new Vec2i(5, 5);
+
+			ent.SetAt('S', Start);
+			ent.SetAt('E', End);
+
+			ContentUtils.AppendElipseAndFill(ent, '#', '.', ConsoleColor.Red, ConsoleColor.Green, Start, End);
 
 			can.Draw();
-			//can.DrawConnectionsColors();
+			can.DrawConnectionsColors();
 
 			Console.ReadKey();
 		}

@@ -46,6 +46,7 @@
     <Compile Include="Content\Abstracts\abs_Content2.cs" />
     <Compile Include="Content\Abstracts\abs_Modifiable2.cs" />
     <Compile Include="Content\Canvases\Canvas2.cs" />
+    <Compile Include="Content\ContentUtils.cs" />
     <Compile Include="Content\Entities\Entity2.cs" />
     <Compile Include="Content\Entities\TextEntity2.cs" />
     <Compile Include="Content\Interfaces\IConnectable2.cs" />
