@@ -18,6 +18,8 @@ namespace ACE_lib2.Content.Interfaces
 		bool AddConnection(IContent2 Content);
 		bool DropConnection(IContent2 Content);
 
+		void DropAllConnections();
+
 		bool IsConnected(IContent2 Content);
 
 		int ConnectedCount { get; }

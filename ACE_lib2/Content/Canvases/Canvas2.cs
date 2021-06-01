@@ -82,6 +82,11 @@ namespace ACE_lib2.Content.Canvases
 			return false;
 		}
 
+		public void DropAllConnections()
+		{
+			this._Connections.Clear();
+		}
+
 		public bool IsConnected(IContent2 Content)
 		{
 			if (this._Connections.Contains(Content)) return true;
@@ -212,7 +217,6 @@ namespace ACE_lib2.Content.Canvases
 				}
 			}
 		}
-
 
 		private char[] _Buffer;
 		private IList<IContent2> _Connections;

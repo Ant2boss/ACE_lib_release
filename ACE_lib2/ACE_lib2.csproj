@@ -44,14 +44,19 @@
     <Compile Include="Args\OnChangedArgs.cs" />
     <Compile Include="Args\OnInfoArgs.cs" />
     <Compile Include="Content\Abstracts\abs_Content2.cs" />
+    <Compile Include="Content\Abstracts\abs_Controller2.cs" />
     <Compile Include="Content\Abstracts\abs_Modifiable2.cs" />
     <Compile Include="Content\Canvases\Canvas2.cs" />
     <Compile Include="Content\ContentUtils.cs" />
+    <Compile Include="Content\Controllers\Controller2.cs" />
     <Compile Include="Content\Entities\Entity2.cs" />
     <Compile Include="Content\Entities\TextEntity2.cs" />
     <Compile Include="Content\Interfaces\IConnectable2.cs" />
     <Compile Include="Content\Interfaces\IContent2.cs" />
+    <Compile Include="Content\Interfaces\IController2.cs" />
     <Compile Include="Content\Interfaces\IModifiable2.cs" />
+    <Compile Include="Content\Props\BorderProps.cs" />
+    <Compile Include="Content\Props\TitleProps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

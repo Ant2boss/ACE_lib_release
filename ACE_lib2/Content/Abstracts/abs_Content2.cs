@@ -14,7 +14,7 @@ namespace ACE_lib2.Content.Abstracts
 {
 	public abstract class abs_Content2 : abs_Modifiable2<char>, IContent2
 	{
-		public Reg2 Region { get; set; }
+		public Reg2 Region { get; set; } = new Reg2();
 
 		public event EventHandler<OnChangedArgs<Reg2>> OnRegionChanged;
 
@@ -65,11 +65,11 @@ namespace ACE_lib2.Content.Abstracts
 		public Vec2d GetPosition() => this.Region.GetPosition();
 		public override Vec2i GetSize() => this.Region.GetSize();
 
-		public void AppendTo(IModifiable2<char> Parent)
+		public virtual void AppendTo(IModifiable2<char> Parent)
 		{
 			this._Attacher((x, y, px, py) => { Parent.SetAt(this.GetAt(x, y), px, py); }, Parent.GetSize());
 		}
-		public void AppendTo(IContent2 Parent)
+		public virtual void AppendTo(IContent2 Parent)
 		{
 			this._Attacher((x, y, px, py) => { 
 				Parent.SetAt(this.GetAt(x, y), px, py);
@@ -77,7 +77,7 @@ namespace ACE_lib2.Content.Abstracts
 			}, Parent.GetSize());
 		}
 
-		public void DrawColorsTo(Canvas2 Can)
+		public virtual void DrawColorsTo(Canvas2 Can)
 		{
 			this._Attacher((x, y, px, py) => {
 				Can.DrawColorAt(this.GetColorAt(x, y), px, py);

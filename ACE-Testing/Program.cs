@@ -11,6 +11,8 @@ using ACE_2D_Base.Regions;
 using ACE_lib2.Content.Canvases;
 using ACE_lib2.Content.Entities;
 using ACE_lib2.Content;
+using ACE_lib2.Content.Controllers;
+using ACE_lib2.Content.Props;
 
 namespace ACE_Testing
 {
@@ -20,19 +22,21 @@ namespace ACE_Testing
 		{
 			Canvas2 can = Canvas2.CreateCanvasSingleton("Test", 96, 32);
 
-			Entity2 ent = new Entity2(can, can.GetSize());
+			Controller2 con = new Controller2(can, 32, 16, 5, 2);
 
-			//ent.Clear('-');
+			con.Title = new TitleProps("Test");
 
-			//ContentUtils.AppendLine(ent, '#', 14, 14, 2, 2);
+			Entity2 ent = new Entity2(con, 5, 5, 2, 1);
+			ent.Clear('1');
+			ent.ClearColors(ConsoleColor.Red);
 
-			Vec2i Start = new Vec2i(61, 20);
-			Vec2i End = new Vec2i(5, 5);
+			Entity2 ent2 = new Entity2(con, 5, 5, 9, 1);
+			ent2.Clear('2');
+			ent2.ClearColors(ConsoleColor.Green);
 
-			ent.SetAt('S', Start);
-			ent.SetAt('E', End);
-
-			ContentUtils.AppendElipseAndFill(ent, '#', '.', ConsoleColor.Red, ConsoleColor.Green, Start, End);
+			Entity2 ent3 = new Entity2(con, 5, 10, 16, 1);
+			ent3.Clear('3');
+			ent3.ClearColors(ConsoleColor.Blue);
 
 			can.Draw();
 			can.DrawConnectionsColors();
