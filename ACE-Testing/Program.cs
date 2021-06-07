@@ -22,22 +22,14 @@ namespace ACE_Testing
 		{
 			Canvas2 can = Canvas2.CreateCanvasSingleton("Test", 96, 32);
 
-			LayoutController2 laycon = new LayoutController2(can, 64, 28, 2, 1);
+			TextEntity2 ent = new TextEntity2(20, 20);
+
+			ent.Write("Hello world!");
 			
-			laycon.Title = new TitleProps("Layout", "--[", "]--");
-			laycon.InitialOffset = new Vec2i(2, 1);
-			laycon.ElementLayoutDirection = LayoutController2.LayoutDirection.LeftToRight;
 
-			laycon.AddConnection(new Entity2(10 / 2, 3));
-			laycon.AddConnection(new Entity2(12 / 2, 1));
-			laycon.AddConnection(new Entity2(23 / 2, 5));
-			laycon.AddConnection(new Entity2(15 / 2, 2));
-			laycon.AddConnection(new Entity2(10 / 2, 3));
+			SpriteEntity2 temp = ContentUtils.GetNewSpriteEntityBaseOn(ent);
 
-			for (int i = 0; i < laycon.ConnectedCount; ++i)
-			{
-				laycon.GetConnected(i).Clear((char)('0' + i));
-			}
+			can.AddConnection(temp);
 
 			can.Draw();
 			//can.DrawConnectionsColors();

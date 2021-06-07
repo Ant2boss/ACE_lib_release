@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ACE_2D_Base.Vectors;
+using ACE_lib2.Content.Entities;
 using ACE_lib2.Content.Interfaces;
 
 namespace ACE_lib2.Content
@@ -318,6 +319,27 @@ namespace ACE_lib2.Content
 					To.SetColorAt(From.GetColorAt(x, y), x, y);
 				}
 			}
+		}
+
+		public static Entity2 GetNewEntityBasedOn(IContent2 OriginalContent)
+		{
+			Entity2 ent = new Entity2(OriginalContent.Region);
+
+			CopyContentWithColorTo(OriginalContent, ent);
+
+			return ent;
+		}
+		public static TextEntity2 GetNewTextEntityBasedOn(IContent2 OriginalContent)
+		{
+			TextEntity2 ent = new TextEntity2(OriginalContent.Region);
+
+			CopyContentWithColorTo(OriginalContent, ent);
+
+			return ent;
+		}
+		public static SpriteEntity2 GetNewSpriteEntityBaseOn(IContent2 OriginalContent)
+		{
+			return SpriteEntity2.ParseSpriteFromContent(OriginalContent);
 		}
 	}
 }

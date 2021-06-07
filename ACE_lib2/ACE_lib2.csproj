@@ -51,6 +51,7 @@
     <Compile Include="Content\Controllers\Controller2.cs" />
     <Compile Include="Content\Controllers\LayoutController2.cs" />
     <Compile Include="Content\Entities\Entity2.cs" />
+    <Compile Include="Content\Entities\SpriteEntity2.cs" />
     <Compile Include="Content\Entities\TextEntity2.cs" />
     <Compile Include="Content\Interfaces\IConnectable2.cs" />
     <Compile Include="Content\Interfaces\IContent2.cs" />
