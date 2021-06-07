@@ -22,21 +22,10 @@ namespace ACE_Testing
 		{
 			Canvas2 can = Canvas2.CreateCanvasSingleton("Test", 96, 32);
 
-			Controller2 con = new Controller2(can, 32, 16, 5, 2);
+			Controller2 Con = new Controller2(can, 32, 16, 32, 1);
 
-			con.Title = new TitleProps("Test");
-
-			Entity2 ent = new Entity2(con, 5, 5, 2, 1);
-			ent.Clear('1');
-			ent.ClearColors(ConsoleColor.Red);
-
-			Entity2 ent2 = new Entity2(con, 5, 5, 9, 1);
-			ent2.Clear('2');
-			ent2.ClearColors(ConsoleColor.Green);
-
-			Entity2 ent3 = new Entity2(con, 5, 10, 16, 1);
-			ent3.Clear('3');
-			ent3.ClearColors(ConsoleColor.Blue);
+			ContentUtils.AppendRectangleAndFillWithColor(Con, '#', ConsoleColor.Green, 1, 1, 22, 11);
+			ContentUtils.CopyContentTo(Con, can);
 
 			can.Draw();
 			can.DrawConnectionsColors();
