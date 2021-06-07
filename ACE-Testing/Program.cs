@@ -22,13 +22,25 @@ namespace ACE_Testing
 		{
 			Canvas2 can = Canvas2.CreateCanvasSingleton("Test", 96, 32);
 
-			Controller2 Con = new Controller2(can, 32, 16, 32, 1);
+			LayoutController2 laycon = new LayoutController2(can, 64, 28, 2, 1);
+			
+			laycon.Title = new TitleProps("Layout", "--[", "]--");
+			laycon.InitialOffset = new Vec2i(2, 1);
+			laycon.ElementLayoutDirection = LayoutController2.LayoutDirection.LeftToRight;
 
-			ContentUtils.AppendRectangleAndFillWithColor(Con, '#', ConsoleColor.Green, 1, 1, 22, 11);
-			ContentUtils.CopyContentTo(Con, can);
+			laycon.AddConnection(new Entity2(10 / 2, 3));
+			laycon.AddConnection(new Entity2(12 / 2, 1));
+			laycon.AddConnection(new Entity2(23 / 2, 5));
+			laycon.AddConnection(new Entity2(15 / 2, 2));
+			laycon.AddConnection(new Entity2(10 / 2, 3));
+
+			for (int i = 0; i < laycon.ConnectedCount; ++i)
+			{
+				laycon.GetConnected(i).Clear((char)('0' + i));
+			}
 
 			can.Draw();
-			can.DrawConnectionsColors();
+			//can.DrawConnectionsColors();
 
 			Console.ReadKey();
 		}
