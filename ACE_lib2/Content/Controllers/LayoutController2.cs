@@ -35,7 +35,7 @@ namespace ACE_lib2.Content.Controllers
 
 		public LayoutDirection ElementLayoutDirection { get; set; }
 
-		internal override void _iHandleConnection(IContent2 ContentToHandle, int Index)
+		internal override void _iUpdateConnectionProps(IContent2 ContentToUpdate, int Index)
 		{
 			Vec2i Pos = this.InitialOffset.Clone() as Vec2i;
 
@@ -49,15 +49,13 @@ namespace ACE_lib2.Content.Controllers
 			switch (this.ElementLayoutDirection)
 			{
 				case LayoutDirection.TopToBottom:
-					ContentToHandle.Region.SetPosition(this.InitialOffset.X, Pos.Y);
+					ContentToUpdate.Region.SetPosition(this.InitialOffset.X, Pos.Y);
 					break;
 
 				case LayoutDirection.LeftToRight:
-					ContentToHandle.Region.SetPosition(Pos.X, this.InitialOffset.Y);
+					ContentToUpdate.Region.SetPosition(Pos.X, this.InitialOffset.Y);
 					break;
 			}
-
-			base._iHandleConnection(ContentToHandle, Index);
 		}
 
 		private void _InitClass()

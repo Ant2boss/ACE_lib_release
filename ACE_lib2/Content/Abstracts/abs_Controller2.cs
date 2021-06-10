@@ -47,7 +47,11 @@ namespace ACE_lib2.Content.Abstracts
 			this._Connected.Clear();
 		}
 
-		public IContent2 GetConnected(int ConnectedIndex) => this._Connected[ConnectedIndex];
+		public IContent2 GetConnected(int ConnectedIndex)
+		{
+			this._iUpdateConnectionProps(this._Connected[ConnectedIndex], ConnectedIndex);
+			return this._Connected[ConnectedIndex];
+		}
 
 		public bool IsConnected(IContent2 Content)
 		{
@@ -217,6 +221,7 @@ namespace ACE_lib2.Content.Abstracts
 
 
 		internal abstract void _iHandleConnection(IContent2 ContentToHandle, int Index);
+		internal abstract void _iUpdateConnectionProps(IContent2 ContentToUpdate, int Index);
 
 		private IList<IContent2> _Connected = new List<IContent2>();
 	}

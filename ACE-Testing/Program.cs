@@ -8,9 +8,9 @@ using System.IO;
 using ACE_2D_Base.Vectors;
 using ACE_2D_Base.Regions;
 
+using ACE_lib2.Content;
 using ACE_lib2.Content.Canvases;
 using ACE_lib2.Content.Entities;
-using ACE_lib2.Content;
 using ACE_lib2.Content.Controllers;
 using ACE_lib2.Content.Props;
 
@@ -23,10 +23,8 @@ namespace ACE_Testing
 			Canvas2 can = Canvas2.CreateCanvasSingleton("Test", 96, 32);
 
 			TextEntity2 ent = new TextEntity2(20, 20);
-
 			ent.Write("Hello world!");
 			
-
 			SpriteEntity2 temp = ContentUtils.GetNewSpriteEntityBaseOn(ent);
 
 			can.AddConnection(temp);

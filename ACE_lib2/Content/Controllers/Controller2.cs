@@ -54,5 +54,9 @@ namespace ACE_lib2.Content.Controllers
 		{
 			ContentToHandle.AppendTo(this);
 		}
+		internal override void _iUpdateConnectionProps(IContent2 ContentToUpdate, int Index)
+		{
+			return;
+		}
 	}
 }
