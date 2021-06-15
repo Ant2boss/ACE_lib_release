@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACE_lib", "ACE_lib\ACE_lib.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACE_2D_Base", "ACE_2D_Base\ACE_2D_Base.csproj", "{468C1FCC-4920-4C10-9810-E265F4F1FBD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACE_lib3", "ACE_lib3\ACE_lib3.csproj", "{33FC122B-B5E1-4828-8407-75FC6593EDB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{468C1FCC-4920-4C10-9810-E265F4F1FBD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{468C1FCC-4920-4C10-9810-E265F4F1FBD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{468C1FCC-4920-4C10-9810-E265F4F1FBD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33FC122B-B5E1-4828-8407-75FC6593EDB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33FC122B-B5E1-4828-8407-75FC6593EDB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33FC122B-B5E1-4828-8407-75FC6593EDB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33FC122B-B5E1-4828-8407-75FC6593EDB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
