@@ -54,9 +54,9 @@
       <Project>{468c1fcc-4920-4c10-9810-e265f4f1fbd7}</Project>
       <Name>ACE_2D_Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ACE_lib\ACE_lib.csproj">
-      <Project>{cc155ec3-534c-4557-aabd-152501335cdd}</Project>
-      <Name>ACE_lib</Name>
+    <ProjectReference Include="..\ACE_lib3\ACE_lib3.csproj">
+      <Project>{33fc122b-b5e1-4828-8407-75fc6593edb5}</Project>
+      <Name>ACE_lib3</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

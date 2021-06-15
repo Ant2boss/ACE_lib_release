@@ -41,7 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Content\Canvases\Canvas2.cs" />
+    <Compile Include="Content\Interfaces\IColorModifiable2.cs" />
+    <Compile Include="Content\Interfaces\IEntity2.cs" />
+    <Compile Include="Content\Interfaces\IModifiableEntity2.cs" />
+    <Compile Include="Content\Interfaces\IModifyIndexCheckers.cs" />
+    <Compile Include="Content\Interfaces\ITextModifiable2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ACE_2D_Base\ACE_2D_Base.csproj">
+      <Project>{468c1fcc-4920-4c10-9810-e265f4f1fbd7}</Project>
+      <Name>ACE_2D_Base</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
